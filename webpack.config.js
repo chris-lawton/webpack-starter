@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const path = require('path');
 const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -50,6 +51,7 @@ module.exports = {
   },
   // plugins - handle any extra processes
   plugins: [
-    new ExtractTextPlugin('[name].min.css')
+    new ExtractTextPlugin('[name].min.css'),
+    new webpack.optimize.ModuleConcatenationPlugin()
   ]
 };
