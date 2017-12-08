@@ -33,17 +33,20 @@ module.exports = {
         test: /\.scss$/,
         use: ExtractTextPlugin.extract({
           use: [{
-            loader: 'css-loader'
-          }, {
-            loader: 'sass-loader'
+            loader: 'css-loader',
+            options: {
+              url: false,
+            },
           },
           {
             loader: 'postcss-loader',
             options: {
               plugins: [autoprefixer('last 2 version')]
             }
-          }],
-          fallback: 'style-loader'
+          },
+          {
+            loader: 'sass-loader',
+          }]
         })
       },
     ]
