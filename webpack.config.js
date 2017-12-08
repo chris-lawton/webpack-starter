@@ -1,4 +1,5 @@
 const path = require('path');
+const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
@@ -10,11 +11,14 @@ module.exports = {
     styles: './css/style.scss',
   },
 
+  // output - where to place the created bundles
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].bundle.js',
     publicPath: '/dist/',
   },
+
+  // loaders - transform files into modules that can be included in the bundle
   module: {
     rules: [
       {
@@ -32,12 +36,19 @@ module.exports = {
             loader: 'css-loader'
           }, {
             loader: 'sass-loader'
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: [autoprefixer('last 2 version')]
+            }
           }],
           fallback: 'style-loader'
         })
       },
     ]
   },
+  // plugins - handle any extra processes
   plugins: [
     new ExtractTextPlugin('[name].min.css')
   ]
