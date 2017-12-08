@@ -4,18 +4,17 @@ const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-  context: path.resolve(__dirname, './src'),
+  context: path.resolve(__dirname, 'src'),
 
   // entry - where to start bundling from
   entry: {
-    app: './js/app.js',
-    styles: './css/style.scss',
+    app: './js/app.js'
   },
 
   // output - where to place the created bundles
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].bundle.js',
+    filename: 'bundle.js',
     publicPath: '/dist/',
   },
 
@@ -51,7 +50,7 @@ module.exports = {
   },
   // plugins - handle any extra processes
   plugins: [
-    new ExtractTextPlugin('[name].min.css'),
+    new ExtractTextPlugin('style.min.css'),
     new webpack.optimize.ModuleConcatenationPlugin()
   ]
 };
